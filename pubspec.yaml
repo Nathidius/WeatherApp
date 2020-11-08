@@ -1,5 +1,5 @@
 name: weather_app
-description: A new Flutter application.
+description: Flutter weather application.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -15,7 +15,9 @@ dependencies:
   http: ^0.12.2
   equatable: ^1.2.5
   flutter_svg: ^0.19.1
-
+  intl: ^0.16.1
+  lite_rolling_switch: ^0.1.1
+  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:

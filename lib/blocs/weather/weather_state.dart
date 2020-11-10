@@ -1,26 +1,14 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:weather_app/data/models/weather.dart';
 
-abstract class WeatherState extends Equatable {
-  const WeatherState();
+part 'weather_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class WeatherState with _$WeatherState {
+  const factory WeatherState.initial() = _Initial;
+  const factory WeatherState.loadInProgress() = _LoadInProgress;
+  const factory WeatherState.loadSuccess(
+      {@required List<Weather> weatherList}) = LoadSuccess;
+  const factory WeatherState.loadFailure() = LoadFailure;
 }
-
-class WeatherInitial extends WeatherState {}
-
-class WeatherLoadInProgress extends WeatherState {}
-
-class WeatherLoadSuccess extends WeatherState {
-  const WeatherLoadSuccess({@required this.weatherList})
-      : assert(weatherList != null);
-
-  final List<Weather> weatherList;
-
-  @override
-  List<Object> get props => [weatherList];
-}
-
-class WeatherLoadFailure extends WeatherState {}

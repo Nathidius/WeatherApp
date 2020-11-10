@@ -22,9 +22,9 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Refresh(
       onRefresh: () {
-        context
-            .read<WeatherBloc>()
-            .add(const WeatherRefreshRequested(city: Constants.cityName));
+        context.read<WeatherBloc>().add(
+            const WeatherEvent.weatherRefreshRequested(
+                city: Constants.cityName));
         return refreshCompleter.future;
       },
       child: Center(
@@ -37,9 +37,9 @@ class ErrorPage extends StatelessWidget {
             ),
             const SizedBox(height: Dimensions.large),
             RetryButton(onPressed: () {
-              context
-                  .read<WeatherBloc>()
-                  .add(const WeatherRequested(city: Constants.cityName));
+              context.read<WeatherBloc>().add(
+                  const WeatherEvent.weatherRequested(
+                      city: Constants.cityName));
             }),
           ],
         ),

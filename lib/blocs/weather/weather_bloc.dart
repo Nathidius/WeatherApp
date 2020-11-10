@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:weather_app/data/models/weather.dart';
+import 'package:weather_app/data/models/weather_data.dart';
 import 'package:weather_app/data/repositories/weather_repository.dart';
 
 import 'weather_event.dart';
@@ -9,39 +9,39 @@ import 'weather_state.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc({@required this.weatherRepository})
       : assert(weatherRepository != null),
-        super(WeatherInitial());
+        super(const WeatherState.initial());
 
   final WeatherRepository weatherRepository;
 
   @override
   Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
-    if (event is WeatherRequested) {
-      yield* _mapWeatherRequestedToState(event);
-    } else if (event is WeatherRefreshRequested) {
-      yield* _mapWeatherRefreshRequestedToState(event);
-    }
+    yield* event.map(
+      weatherRequested: _mapWeatherRequestedEventToState,
+      weatherRefreshRequested: _mapWeatherRefreshRequestedEventToState,
+    );
   }
 
-  Stream<WeatherState> _mapWeatherRequestedToState(
-      WeatherRequested event) async* {
-    yield WeatherLoadInProgress();
+  Stream<WeatherState> _mapWeatherRequestedEventToState(
+      WeatherEvent event) async* {
+    yield const WeatherState.loadInProgress();
     try {
       final WeatherData weatherData =
           await weatherRepository.getWeatherData(event.city);
-      yield WeatherLoadSuccess(weatherList: weatherData.list);
+      yield WeatherState.loadSuccess(weatherList: weatherData.list);
     } catch (_) {
-      yield WeatherLoadFailure();
+      yield const WeatherState.loadFailure();
     }
   }
 
-  Stream<WeatherState> _mapWeatherRefreshRequestedToState(
-      WeatherRefreshRequested event) async* {
+  Stream<WeatherState> _mapWeatherRefreshRequestedEventToState(
+      WeatherEvent event) async* {
     try {
       final WeatherData weatherData =
           await weatherRepository.getWeatherData(event.city);
-      yield WeatherLoadSuccess(weatherList: weatherData.list);
+      yield const WeatherState.loadInProgress();
+      yield WeatherState.loadSuccess(weatherList: weatherData.list);
     } catch (_) {
-      yield WeatherLoadFailure();
+      yield const WeatherState.loadFailure();
     }
   }
 }

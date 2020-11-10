@@ -1,4 +1,7 @@
 analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   errors:
     missing_required_param: error
     invalid_use_of_protected_member: error

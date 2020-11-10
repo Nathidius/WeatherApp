@@ -55,7 +55,8 @@ class WeatherApp extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 WeatherBloc(weatherRepository: weatherRepository)
-                  ..add(const WeatherRequested(city: Constants.cityName)),
+                  ..add(const WeatherEvent.weatherRequested(
+                      city: Constants.cityName)),
           ),
           BlocProvider(
             create: (context) =>

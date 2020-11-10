@@ -1,10 +1,8 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class HomeState extends Equatable {
-  const HomeState(this.selectedIndex);
+part 'home_state.freezed.dart';
 
-  final int selectedIndex;
-
-  @override
-  List<Object> get props => [selectedIndex];
+@freezed
+abstract class HomeState with _$HomeState {
+  const factory HomeState(int selectedIndex) = _HomeState;
 }

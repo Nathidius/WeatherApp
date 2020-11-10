@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:meta/meta.dart';
 import 'package:weather_app/data/api/weather_api_client.dart';
-import 'package:weather_app/data/models/weather.dart';
+import 'package:weather_app/data/models/weather_data.dart';
 
 class WeatherRepository {
   WeatherRepository({@required this.weatherApiClient})

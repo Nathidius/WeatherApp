@@ -8,7 +8,7 @@ class HumidityText extends StatelessWidget {
       : assert(humidity != null),
         super(key: key);
 
-  final int humidity;
+  final double humidity;
 
   @override
   Widget build(BuildContext context) {

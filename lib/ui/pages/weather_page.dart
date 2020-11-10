@@ -30,9 +30,9 @@ class WeatherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Refresh(
       onRefresh: () {
-        context
-            .read<WeatherBloc>()
-            .add(const WeatherRefreshRequested(city: Constants.cityName));
+        context.read<WeatherBloc>().add(
+            const WeatherEvent.weatherRefreshRequested(
+                city: Constants.cityName));
         return refreshCompleter.future;
       },
       child: OrientationBuilder(builder: (context, orientation) {

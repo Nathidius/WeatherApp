@@ -1,54 +1,28 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weather_app/resources/constants.dart';
 
-class WeatherData {
-  WeatherData({this.list});
+part 'weather.freezed.dart';
+part 'weather.g.dart';
 
-  factory WeatherData.fromJson(Map<String, dynamic> json) {
-    return WeatherData(
-        list: List<Weather>.from(json['consolidated_weather'].map((cw) {
-      return Weather.fromJson(cw);
-    })));
-  }
+@freezed
+abstract class Weather implements _$Weather {
+  const factory Weather({
+    @JsonKey(name: 'weather_state_name') String weatherStateName,
+    @JsonKey(name: 'weather_state_abbr') String weatherStateAbbr,
+    @JsonKey(name: 'applicable_date') DateTime applicableDate,
+    @JsonKey(name: 'min_temp') double minTempCelsius,
+    @JsonKey(name: 'max_temp') double maxTempCelsius,
+    @JsonKey(name: 'the_temp') double theTempCelsius,
+    @JsonKey(name: 'wind_speed') double windSpeedMPH,
+    @JsonKey(name: 'air_pressure') double airPressureMBars,
+    double humidity,
+  }) = _Weather;
 
-  List<Weather> list;
-}
-
-class Weather {
-  Weather({
-    this.weatherStateName,
-    this.weatherStateAbbr,
-    this.applicableDate,
-    this.minTempCelsius,
-    this.maxTempCelsius,
-    this.theTempCelsius,
-    this.windSpeedMPH,
-    this.airPressureMBars,
-    this.humidity,
-  });
+  const Weather._();
 
   factory Weather.fromJson(Map<String, dynamic> json) {
-    return Weather(
-      weatherStateName: json['weather_state_name'],
-      weatherStateAbbr: json['weather_state_abbr'],
-      applicableDate: DateTime.parse(json['applicable_date']),
-      minTempCelsius: json['min_temp'],
-      maxTempCelsius: json['max_temp'],
-      theTempCelsius: json['the_temp'],
-      windSpeedMPH: json['wind_speed'],
-      airPressureMBars: json['air_pressure'],
-      humidity: json['humidity'],
-    );
+    return _$WeatherFromJson(json);
   }
-
-  String weatherStateName;
-  String weatherStateAbbr;
-  DateTime applicableDate;
-  double minTempCelsius;
-  double maxTempCelsius;
-  double theTempCelsius;
-  double windSpeedMPH;
-  double airPressureMBars;
-  int humidity;
 
   String get weatherStateImageUrl {
     return '${Constants.weatherApiBaseUrl}/static/img/weather/$weatherStateAbbr.svg';

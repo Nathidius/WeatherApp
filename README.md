@@ -8,20 +8,19 @@ It supports:
 1. Both portrait and landscape mode
 2. Changing temperature's unit (°C/°F)
 
+## Getting Started
+
+- This project uses [code generation tools](https://pub.dev/packages/build_runner). Run the below command to generate necessary files:
+```shell script
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
 ### Libraries
-* [Flutter BloC][bloc]
-* [Http][http]
-* [Equatable][equatable]
-* [Flutter Svg][flutter_svg]
-* [Intl][intl]
-* [Lite Rolling Switch][lite_rolling_switch]
-* [Shared Preferences][shared_preferences]
-
-
-[bloc]: https://bloclibrary.dev/#/
-[http]: https://pub.dev/packages/http
-[equatable]: https://pub.dev/packages/equatable
-[flutter_svg]: https://pub.dev/packages/flutter_svg
-[intl]: https://pub.dev/packages/intl
-[lite_rolling_switch]: https://pub.dev/packages/lite_rolling_switch
-[shared_preferences]: https://pub.dev/packages/shared_preferences
+* [Flutter BloC](https://bloclibrary.dev/#/)
+* [Http](https://pub.dev/packages/http)
+* [Flutter Svg](https://pub.dev/packages/flutter_svg)
+* [Intl](https://pub.dev/packages/intl)
+* [Lite Rolling Switch](https://pub.dev/packages/lite_rolling_switch)
+* [Shared Preferences](https://pub.dev/packages/shared_preferences)
+* [Freezed](https://pub.dev/packages/freezed)
+* [Json Serializable](https://pub.dev/packages/json_serializable)

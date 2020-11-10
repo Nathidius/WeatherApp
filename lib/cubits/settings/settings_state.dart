@@ -1,10 +1,8 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class SettingsState extends Equatable {
-  const SettingsState(this.isCelsius);
+part 'settings_state.freezed.dart';
 
-  final bool isCelsius;
-
-  @override
-  List<Object> get props => [isCelsius];
+@freezed
+abstract class SettingsState with _$SettingsState {
+  const factory SettingsState(bool isCelsius) = _SettingsState;
 }

@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _refreshCompleter = Completer<void>();
+    _refreshCompleter = Completer();
   }
 
   @override
@@ -30,27 +30,29 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: TopBar(),
       body: BlocConsumer<WeatherBloc, WeatherState>(
         listener: (context, state) {
-          if (state is WeatherLoadSuccess || state is WeatherLoadFailure) {
-            _refreshCompleter?.complete();
-            _refreshCompleter = Completer();
+          if (state is LoadSuccess || state is LoadFailure) {
+            _resetRefreshCompleter();
           }
         },
         builder: (context, state) {
-          if (state is WeatherLoadInProgress) {
-            return const LoadingPage();
-          }
-          if (state is WeatherLoadSuccess) {
-            return WeatherPage(
-              weatherList: state.weatherList,
-              refreshCompleter: _refreshCompleter,
-            );
-          }
-          if (state is WeatherLoadFailure) {
-            return ErrorPage(refreshCompleter: _refreshCompleter);
-          }
-          return Container();
+          return state.map(
+              initial: (_) => Container(),
+              loadInProgress: (_) => const LoadingPage(),
+              loadSuccess: (state) {
+                return WeatherPage(
+                  weatherList: state.weatherList,
+                  refreshCompleter: _refreshCompleter,
+                );
+              },
+              loadFailure: (_) =>
+                  ErrorPage(refreshCompleter: _refreshCompleter));
         },
       ),
     );
+  }
+
+  void _resetRefreshCompleter() {
+    _refreshCompleter?.complete();
+    _refreshCompleter = Completer();
   }
 }

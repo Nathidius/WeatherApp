@@ -1,24 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
-abstract class WeatherEvent extends Equatable {
-  const WeatherEvent();
-}
+part 'weather_event.freezed.dart';
 
-class WeatherRequested extends WeatherEvent {
-  const WeatherRequested({@required this.city}) : assert(city != null);
-
-  final String city;
-
-  @override
-  List<Object> get props => [city];
-}
-
-class WeatherRefreshRequested extends WeatherEvent {
-  const WeatherRefreshRequested({@required this.city}) : assert(city != null);
-
-  final String city;
-
-  @override
-  List<Object> get props => [city];
+@freezed
+abstract class WeatherEvent with _$WeatherEvent {
+  const factory WeatherEvent.weatherRequested({@required String city}) =
+      _WeatherRequested;
+  const factory WeatherEvent.weatherRefreshRequested({@required String city}) =
+      _WeatherRefreshRequested;
 }

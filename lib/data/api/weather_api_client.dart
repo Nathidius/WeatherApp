@@ -1,39 +1,46 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
+import 'package:injectable/injectable.dart';
+import 'package:weather_app/data/models/location.dart';
 import 'package:weather_app/data/models/weather_data.dart';
 import 'package:weather_app/resources/constants.dart';
 
+@lazySingleton
 class WeatherApiClient {
-  WeatherApiClient({
-    @required this.httpClient,
-  }) : assert(httpClient != null);
+  WeatherApiClient(this._httpClient) : assert(_httpClient != null);
 
-  final http.Client httpClient;
+  final http.Client _httpClient;
 
   Future<int> getLocationId(String city) async {
     final locationUrl =
         '${Constants.weatherApiBaseUrl}/api/location/search/?query=$city';
-    final response = await httpClient.get(locationUrl);
-    if (response.statusCode != 200) {
+    final response = await _httpClient.get(locationUrl);
+
+    if (response.isSuccessful) {
+      final json = (jsonDecode(response.body) as List).first;
+      return Location.fromJson(json).id;
+    } else {
       throw Exception('error getting locationId for city');
     }
-
-    final locationJson = jsonDecode(response.body) as List;
-    return (locationJson.first)['woeid'];
   }
 
   Future<WeatherData> fetchWeather(int locationId) async {
     final weatherUrl =
         '${Constants.weatherApiBaseUrl}/api/location/$locationId';
-    final response = await httpClient.get(weatherUrl);
+    final response = await _httpClient.get(weatherUrl);
 
-    if (response.statusCode != 200) {
+    if (response.isSuccessful) {
+      final json = jsonDecode(response.body);
+      return WeatherData.fromJson(json);
+    } else {
       throw Exception('error getting weather for location');
     }
-
-    final json = jsonDecode(response.body);
-    return WeatherData.fromJson(json);
   }
+}
+
+extension _ResponseExtensions on http.Response {
+  bool get isSuccessful =>
+      statusCode >= HttpStatus.ok && statusCode < HttpStatus.multipleChoices;
 }

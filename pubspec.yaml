@@ -18,10 +18,13 @@ dependencies:
   lite_rolling_switch: ^0.1.1
   shared_preferences: ^0.5.12+4
   freezed_annotation: ^0.12.0
+  injectable: ^1.0.5
+  get_it: ^5.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  injectable_generator: ^1.0.5
   build_runner: ^1.10.0
   freezed: 0.12.1
   json_serializable: ^3.5.0

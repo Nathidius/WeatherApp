@@ -1,18 +1,19 @@
-import 'package:flutter/foundation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/resources/constants.dart';
 
+@lazySingleton
 class SettingsRepository {
-  SettingsRepository({@required this.sharedPreferences})
-      : assert(sharedPreferences != null);
+  SettingsRepository(this._sharedPreferences)
+      : assert(_sharedPreferences != null);
 
-  final SharedPreferences sharedPreferences;
+  final SharedPreferences _sharedPreferences;
 
   Future<bool> setTemperatureUnit(bool isCelsius) {
-    return sharedPreferences.setBool(Constants.temperatureUnitKey, isCelsius);
+    return _sharedPreferences.setBool(Constants.temperatureUnitKey, isCelsius);
   }
 
   bool getTemperatureUnit() {
-    return sharedPreferences.getBool(Constants.temperatureUnitKey) ?? true;
+    return _sharedPreferences.getBool(Constants.temperatureUnitKey) ?? true;
   }
 }

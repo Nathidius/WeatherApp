@@ -29,30 +29,31 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: TopBar(),
       body: BlocConsumer<WeatherBloc, WeatherState>(
-        listener: (context, state) {
-          if (state is LoadSuccess || state is LoadFailure) {
-            _resetRefreshCompleter();
-          }
-        },
-        builder: (context, state) {
-          return state.map(
-              initial: (_) => Container(),
-              loadInProgress: (_) => const LoadingPage(),
-              loadSuccess: (state) {
-                return WeatherPage(
-                  weatherList: state.weatherList,
-                  refreshCompleter: _refreshCompleter,
-                );
-              },
-              loadFailure: (_) =>
-                  ErrorPage(refreshCompleter: _refreshCompleter));
-        },
+        listener: _listen,
+        builder: _build,
       ),
     );
+  }
+
+  void _listen(BuildContext context, WeatherState state) {
+    if (state is LoadSuccess || state is LoadFailure) {
+      _resetRefreshCompleter();
+    }
   }
 
   void _resetRefreshCompleter() {
     _refreshCompleter?.complete();
     _refreshCompleter = Completer();
+  }
+
+  Widget _build(BuildContext context, WeatherState state) {
+    return state.map(
+        initial: (_) => Container(),
+        loadInProgress: (_) => const LoadingPage(),
+        loadSuccess: (state) => WeatherPage(
+              weatherList: state.weatherList,
+              refreshCompleter: _refreshCompleter,
+            ),
+        loadFailure: (_) => ErrorPage(refreshCompleter: _refreshCompleter));
   }
 }

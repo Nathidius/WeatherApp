@@ -4,6 +4,8 @@ analyzer:
     - "**/*.freezed.dart"
   errors:
     missing_required_param: error
+    missing_return: error
+    must_be_immutable: error
     invalid_use_of_protected_member: error
     todo: ignore
 

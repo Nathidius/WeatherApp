@@ -1,17 +1,17 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app/data/api/weather_api_client.dart';
 import 'package:weather_app/data/models/weather_data.dart';
 
+@lazySingleton
 class WeatherRepository {
-  WeatherRepository({@required this.weatherApiClient})
-      : assert(weatherApiClient != null);
+  WeatherRepository(this._weatherApiClient) : assert(_weatherApiClient != null);
 
-  final WeatherApiClient weatherApiClient;
+  final WeatherApiClient _weatherApiClient;
 
   Future<WeatherData> getWeatherData(String city) async {
-    final int locationId = await weatherApiClient.getLocationId(city);
-    return weatherApiClient.fetchWeather(locationId);
+    final int locationId = await _weatherApiClient.getLocationId(city);
+    return _weatherApiClient.fetchWeather(locationId);
   }
 }

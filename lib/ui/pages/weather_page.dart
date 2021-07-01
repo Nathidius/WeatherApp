@@ -16,12 +16,10 @@ import 'package:weather_app/ui/widgets/weather/weather_main.dart';
 
 class WeatherPage extends StatelessWidget {
   const WeatherPage({
-    Key key,
-    @required this.weatherList,
-    @required this.refreshCompleter,
-  })  : assert(weatherList != null),
-        assert(refreshCompleter != null),
-        super(key: key);
+    Key? key,
+    required this.weatherList,
+    required this.refreshCompleter,
+  }) : super(key: key);
 
   final List<Weather> weatherList;
   final Completer refreshCompleter;
@@ -57,12 +55,10 @@ class WeatherPage extends StatelessWidget {
 
 class _Portrait extends StatelessWidget {
   const _Portrait({
-    Key key,
-    @required this.weatherList,
-    @required this.selectedWeather,
-  })  : assert(weatherList != null),
-        assert(selectedWeather != null),
-        super(key: key);
+    Key? key,
+    required this.weatherList,
+    required this.selectedWeather,
+  }) : super(key: key);
 
   final List<Weather> weatherList;
   final Weather selectedWeather;
@@ -85,12 +81,10 @@ class _Portrait extends StatelessWidget {
 
 class _Landscape extends StatelessWidget {
   const _Landscape({
-    Key key,
-    @required this.weatherList,
-    @required this.selectedWeather,
-  })  : assert(weatherList != null),
-        assert(selectedWeather != null),
-        super(key: key);
+    Key? key,
+    required this.weatherList,
+    required this.selectedWeather,
+  }) : super(key: key);
 
   final List<Weather> weatherList;
   final Weather selectedWeather;

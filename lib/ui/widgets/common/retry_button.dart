@@ -4,9 +4,7 @@ import 'package:weather_app/resources/font_sizes.dart';
 import 'package:weather_app/resources/strings.dart';
 
 class RetryButton extends StatelessWidget {
-  const RetryButton({Key key, @required this.onPressed})
-      : assert(onPressed != null),
-        super(key: key);
+  const RetryButton({Key? key, required this.onPressed}) : super(key: key);
 
   final VoidCallback onPressed;
 

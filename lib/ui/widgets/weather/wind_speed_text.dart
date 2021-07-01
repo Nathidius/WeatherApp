@@ -5,9 +5,10 @@ import 'package:weather_app/resources/units.dart';
 import 'package:weather_app/ui/widgets/common/descripion_text.dart';
 
 class WindSpeedText extends StatelessWidget {
-  const WindSpeedText({Key key, @required this.windSpeedMPH})
-      : assert(windSpeedMPH != null),
-        super(key: key);
+  const WindSpeedText({
+    Key? key,
+    required this.windSpeedMPH,
+  }) : super(key: key);
 
   final double windSpeedMPH;
 

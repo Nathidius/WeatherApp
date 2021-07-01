@@ -6,9 +6,10 @@ import 'weather_condition_image.dart';
 import 'weather_state_text.dart';
 
 class WeatherMain extends StatelessWidget {
-  const WeatherMain({Key key, @required this.weather})
-      : assert(weather != null),
-        super(key: key);
+  const WeatherMain({
+    Key? key,
+    required this.weather,
+  }) : super(key: key);
 
   final Weather weather;
 

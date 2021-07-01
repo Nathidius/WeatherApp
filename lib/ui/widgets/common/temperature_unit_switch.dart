@@ -8,7 +8,7 @@ import 'package:weather_app/resources/font_sizes.dart';
 import 'package:weather_app/resources/units.dart';
 
 class TemperatureUnitSwitch extends StatelessWidget {
-  const TemperatureUnitSwitch({Key key}) : super(key: key);
+  const TemperatureUnitSwitch({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

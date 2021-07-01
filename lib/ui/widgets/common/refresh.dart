@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Refresh extends StatelessWidget {
-  const Refresh({Key key, @required this.child, @required this.onRefresh})
-      : assert(child != null),
-        assert(onRefresh != null),
-        super(key: key);
+  const Refresh({
+    Key? key,
+    required this.child,
+    required this.onRefresh,
+  }) : super(key: key);
 
   final Widget child;
   final RefreshCallback onRefresh;

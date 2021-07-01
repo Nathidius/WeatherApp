@@ -7,11 +7,11 @@ import 'package:weather_app/resources/dimensions.dart';
 import 'weather_list_item.dart';
 
 class WeatherListView extends StatelessWidget {
-  const WeatherListView(
-      {Key key, @required this.weatherList, @required this.scrollDirection})
-      : assert(weatherList != null),
-        assert(scrollDirection != null),
-        super(key: key);
+  const WeatherListView({
+    Key? key,
+    required this.weatherList,
+    required this.scrollDirection,
+  }) : super(key: key);
 
   final List<Weather> weatherList;
   final Axis scrollDirection;

@@ -9,13 +9,13 @@ import 'package:weather_app/resources/constants.dart';
 
 @lazySingleton
 class WeatherApiClient {
-  WeatherApiClient(this._httpClient) : assert(_httpClient != null);
+  WeatherApiClient(this._httpClient);
 
   final http.Client _httpClient;
 
   Future<int> getLocationId(String city) async {
-    final locationUrl =
-        '${Constants.weatherApiBaseUrl}/api/location/search/?query=$city';
+    final locationUrl = Uri.parse(
+        '${Constants.weatherApiBaseUrl}/api/location/search/?query=$city');
     final response = await _httpClient.get(locationUrl);
 
     if (response.isSuccessful) {
@@ -28,7 +28,7 @@ class WeatherApiClient {
 
   Future<WeatherData> fetchWeather(int locationId) async {
     final weatherUrl =
-        '${Constants.weatherApiBaseUrl}/api/location/$locationId';
+        Uri.parse('${Constants.weatherApiBaseUrl}/api/location/$locationId');
     final response = await _httpClient.get(weatherUrl);
 
     if (response.isSuccessful) {

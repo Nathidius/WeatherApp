@@ -5,9 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_app/resources/durations.dart';
 
 class WeatherConditionImage extends StatelessWidget {
-  const WeatherConditionImage({Key key, @required this.imageUrl})
-      : assert(imageUrl != null),
-        super(key: key);
+  const WeatherConditionImage({
+    Key? key,
+    required this.imageUrl,
+  }) : super(key: key);
 
   final String imageUrl;
 

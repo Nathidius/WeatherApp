@@ -4,8 +4,7 @@ import 'package:weather_app/resources/constants.dart';
 
 @lazySingleton
 class SettingsRepository {
-  SettingsRepository(this._sharedPreferences)
-      : assert(_sharedPreferences != null);
+  SettingsRepository(this._sharedPreferences);
 
   final SharedPreferences _sharedPreferences;
 

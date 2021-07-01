@@ -12,9 +12,10 @@ import 'package:weather_app/ui/widgets/common/refresh.dart';
 import 'package:weather_app/ui/widgets/common/retry_button.dart';
 
 class ErrorPage extends StatelessWidget {
-  const ErrorPage({Key key, @required this.refreshCompleter})
-      : assert(refreshCompleter != null),
-        super(key: key);
+  const ErrorPage({
+    Key? key,
+    required this.refreshCompleter,
+  }) : super(key: key);
 
   final Completer refreshCompleter;
 

@@ -7,8 +7,7 @@ import 'settings_state.dart';
 @injectable
 class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit(this._settingsRepository)
-      : assert(_settingsRepository != null),
-        super(SettingsState(_settingsRepository.getTemperatureUnit()));
+      : super(SettingsState(_settingsRepository.getTemperatureUnit()));
 
   final SettingsRepository _settingsRepository;
 

@@ -4,9 +4,10 @@ import 'package:weather_app/resources/units.dart';
 import 'package:weather_app/ui/widgets/common/descripion_text.dart';
 
 class PressureText extends StatelessWidget {
-  const PressureText({Key key, @required this.pressure})
-      : assert(pressure != null),
-        super(key: key);
+  const PressureText({
+    Key? key,
+    required this.pressure,
+  }) : super(key: key);
 
   final double pressure;
 

@@ -5,24 +5,23 @@ part 'weather.freezed.dart';
 part 'weather.g.dart';
 
 @freezed
-abstract class Weather implements _$Weather {
+class Weather with _$Weather {
   const factory Weather({
-    @JsonKey(name: 'weather_state_name') String weatherStateName,
-    @JsonKey(name: 'weather_state_abbr') String weatherStateAbbr,
-    @JsonKey(name: 'applicable_date') DateTime applicableDate,
-    @JsonKey(name: 'min_temp') double minTempCelsius,
-    @JsonKey(name: 'max_temp') double maxTempCelsius,
-    @JsonKey(name: 'the_temp') double theTempCelsius,
-    @JsonKey(name: 'wind_speed') double windSpeedMPH,
-    @JsonKey(name: 'air_pressure') double airPressureMBars,
-    double humidity,
+    @JsonKey(name: 'weather_state_name') required String weatherStateName,
+    @JsonKey(name: 'weather_state_abbr') required String weatherStateAbbr,
+    @JsonKey(name: 'applicable_date') required DateTime applicableDate,
+    @JsonKey(name: 'min_temp') required double minTempCelsius,
+    @JsonKey(name: 'max_temp') required double maxTempCelsius,
+    @JsonKey(name: 'the_temp') required double theTempCelsius,
+    @JsonKey(name: 'wind_speed') required double windSpeedMPH,
+    @JsonKey(name: 'air_pressure') required double airPressureMBars,
+    required double humidity,
   }) = _Weather;
 
   const Weather._();
 
-  factory Weather.fromJson(Map<String, dynamic> json) {
-    return _$WeatherFromJson(json);
-  }
+  factory Weather.fromJson(Map<String, dynamic> json) =>
+      _$WeatherFromJson(json);
 
   String get weatherStateImageUrl {
     return '${Constants.weatherApiBaseUrl}/static/img/weather/$weatherStateAbbr.svg';

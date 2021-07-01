@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Completer<void> _refreshCompleter;
+  Completer<void>? _refreshCompleter;
 
   @override
   void initState() {
@@ -52,8 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
         loadInProgress: (_) => const LoadingPage(),
         loadSuccess: (state) => WeatherPage(
               weatherList: state.weatherList,
-              refreshCompleter: _refreshCompleter,
+              refreshCompleter: _refreshCompleter!,
             ),
-        loadFailure: (_) => ErrorPage(refreshCompleter: _refreshCompleter));
+        loadFailure: (_) => ErrorPage(refreshCompleter: _refreshCompleter!));
   }
 }

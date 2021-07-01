@@ -8,9 +8,7 @@ import 'weather_state.dart';
 
 @injectable
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  WeatherBloc(this._weatherRepository)
-      : assert(_weatherRepository != null),
-        super(const WeatherState.initial());
+  WeatherBloc(this._weatherRepository) : super(const WeatherState.initial());
 
   final WeatherRepository _weatherRepository;
 

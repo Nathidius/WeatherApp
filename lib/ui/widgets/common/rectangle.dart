@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Rectangle extends StatelessWidget {
-  const Rectangle({Key key, this.child, this.size}) : super(key: key);
+  const Rectangle({
+    Key? key,
+    required this.child,
+    required this.size,
+  }) : super(key: key);
 
   final Widget child;
   final double size;

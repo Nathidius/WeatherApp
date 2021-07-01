@@ -7,12 +7,10 @@ import 'package:weather_app/ui/widgets/weather/temperature_texts.dart';
 
 class WeatherListItem extends StatelessWidget {
   const WeatherListItem({
-    Key key,
-    @required this.weather,
-    @required this.onPressed,
-  })  : assert(onPressed != null),
-        assert(weather != null),
-        super(key: key);
+    Key? key,
+    required this.weather,
+    required this.onPressed,
+  }) : super(key: key);
 
   final Weather weather;
   final VoidCallback onPressed;

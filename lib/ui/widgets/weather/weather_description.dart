@@ -7,9 +7,10 @@ import 'pressure_text.dart';
 import 'wind_speed_text.dart';
 
 class WeatherDescription extends StatelessWidget {
-  const WeatherDescription({Key key, @required this.weather})
-      : assert(weather != null),
-        super(key: key);
+  const WeatherDescription({
+    Key? key,
+    required this.weather,
+  }) : super(key: key);
 
   final Weather weather;
 

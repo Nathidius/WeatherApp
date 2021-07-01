@@ -5,9 +5,10 @@ import 'package:weather_app/resources/extensions.dart';
 import 'package:weather_app/resources/font_sizes.dart';
 
 class WeatherDayText extends StatelessWidget {
-  const WeatherDayText({Key key, @required this.applicableDate})
-      : assert(applicableDate != null),
-        super(key: key);
+  const WeatherDayText({
+    Key? key,
+    required this.applicableDate,
+  }) : super(key: key);
 
   final DateTime applicableDate;
 

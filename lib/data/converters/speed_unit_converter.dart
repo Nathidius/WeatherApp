@@ -1,3 +1,3 @@
 class SpeedUnitConverter {
-  static double toKilometersPerHour({double mph}) => mph * 1.61;
+  static double toKilometersPerHour({required double mph}) => mph * 1.61;
 }

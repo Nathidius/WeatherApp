@@ -6,7 +6,7 @@ import 'package:weather_app/data/models/weather_data.dart';
 
 @lazySingleton
 class WeatherRepository {
-  WeatherRepository(this._weatherApiClient) : assert(_weatherApiClient != null);
+  WeatherRepository(this._weatherApiClient);
 
   final WeatherApiClient _weatherApiClient;
 

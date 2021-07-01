@@ -5,14 +5,11 @@ import 'package:weather_app/resources/font_sizes.dart';
 
 class DescriptionText extends StatelessWidget {
   const DescriptionText({
-    Key key,
-    @required this.label,
-    @required this.value,
-    @required this.unit,
-  })  : assert(label != null),
-        assert(value != null),
-        assert(unit != null),
-        super(key: key);
+    Key? key,
+    required this.label,
+    required this.value,
+    required this.unit,
+  }) : super(key: key);
 
   final String label;
   final Object value;

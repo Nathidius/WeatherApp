@@ -9,9 +9,10 @@ import 'package:weather_app/resources/font_sizes.dart';
 import 'package:weather_app/resources/units.dart';
 
 class CurrentTemperatureText extends StatelessWidget {
-  const CurrentTemperatureText({Key key, @required this.temperatureCelsius})
-      : assert(temperatureCelsius != null),
-        super(key: key);
+  const CurrentTemperatureText({
+    Key? key,
+    required this.temperatureCelsius,
+  }) : super(key: key);
 
   final double temperatureCelsius;
 
@@ -43,9 +44,10 @@ class CurrentTemperatureText extends StatelessWidget {
 }
 
 class MinMaxTemperatureText extends StatelessWidget {
-  const MinMaxTemperatureText({Key key, @required this.weather})
-      : assert(weather != null),
-        super(key: key);
+  const MinMaxTemperatureText({
+    Key? key,
+    required this.weather,
+  }) : super(key: key);
 
   final Weather weather;
 
